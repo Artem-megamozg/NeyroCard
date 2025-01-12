@@ -7,21 +7,61 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            margin: 50px;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 15px 30px;
+            font-size: 18px;
             cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #inputField {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <h1>Добро пожаловать в наше веб-приложение!</h1>
-    <p>Нажмите кнопку ниже, чтобы отправить данные в Telegram.</p>
+    <p>Введите сообщение и нажмите кнопку, чтобы отправить данные в Telegram.</p>
+    <input type="text" id="inputField" placeholder="Введите ваше сообщение здесь...">
     <button id="sendDataButton">Отправить данные</button>
+    <div id="output"></div>
 
     <script>
         let tg = window.Telegram.WebApp;
@@ -31,8 +71,9 @@
 
         // Обработчик для отправки данных
         document.getElementById("sendDataButton").addEventListener('click', function() {
+            const userInput = document.getElementById("inputField").value;
             const buttonData = {
-                text: "Test web_app",
+                text: userInput || "Test web_app",
                 web_app: {
                     url: "https://revenkroz.github.io/telegram-web-app-bot-example/index.html"
                 }
@@ -40,6 +81,10 @@
 
             // Отправляем данные в Telegram
             tg.sendData(JSON.stringify(buttonData));
+
+            // Отображаем отправленные данные на странице
+            document.getElementById("output").innerText = `Отправлено: ${userInput || "Test web_app"}`;
+            document.getElementById("inputField").value = ''; // Очищаем поле ввода
         });
     </script>
 </body>
