@@ -6,7 +6,54 @@
     <title>Приветственное веб-приложение</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* Ваши стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #inputField {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +85,7 @@
             tg.sendData(JSON.stringify(buttonData));
 
             // Отображаем отправленные данные на странице
-            document.get ElementById("output").innerText = `Отправлено: ${userInput || "Test web_app"}`;
+            document.getElementById("output").innerText = `Отправлено: ${userInput || "Test web_app"}`;
             document.getElementById("inputField").value = ''; // Очищаем поле ввода
         });
 
